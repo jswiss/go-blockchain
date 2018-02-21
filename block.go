@@ -44,8 +44,6 @@ func (b *Block) Serialize() []byte {
 
 	return result.Bytes()
 
-	return result.Bytes()
-
 }
 
 func DeSerializeBlock(d []byte) *Block {
@@ -53,6 +51,9 @@ func DeSerializeBlock(d []byte) *Block {
 
 	decoder := gob.NewDecoder(bytes.NewReader(d))
 	err := decoder.Decode(&block)
+	if err != nil {
+		log.Panic(err)
+	}
 
 	return &block
 }
